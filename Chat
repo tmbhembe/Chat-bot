@@ -1,0 +1,29 @@
+
+const dialogflow = require('dialogflow');
+
+const bot = new dialogflow.Bot({
+  clientId: 'YOUR_CLIENT_ID',
+  clientSecret: 'YOUR_CLIENT_SECRET',
+  projectId: 'YOUR_PROJECT_ID'
+});
+
+bot.intents = [
+  {
+    intent: 'hello',
+    handler: (request, response) => {
+      response.sendMessage('Hello! How can I help you today?');
+    }
+  },
+  {
+    intent: 'goodbye',
+    handler: (request, response) => {
+      response.sendMessage('Goodbye! It was nice chatting with you.');
+    }
+  }
+];
+
+bot.startConversation({
+  source: 'telegram',
+  userId: 'USER_ID'
+});
+
